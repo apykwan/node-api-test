@@ -1,0 +1,15 @@
+name: Test the APIs
+on:
+  push:
+    branches:
+      main
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Load & cache dependencies
+        uses: ./.github/actions/cached-deps
+      - name: Test code
+        run: npm test
