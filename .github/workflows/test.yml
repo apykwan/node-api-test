@@ -12,4 +12,11 @@ jobs:
       - name: Load & cache dependencies
         uses: ./.github/actions/cached-deps
       - name: Test code
-        run: npm test
+        id: run-tests
+        run: npm run test
+      - name: Upload test report
+        if: failure() && steps.run-tests.outcome == 'failure'
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-report
+          path: test.json
