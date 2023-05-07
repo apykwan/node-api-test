@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "set NODE_ENV=development && nodemon server.js",
     "test": "jest --watchAll",
+    "test:prod": "jest",
     "coverage": "jest --coverage"
   },
   "author": "",
