@@ -42,7 +42,7 @@ jobs:
           docker compose up -d 
           docker compose down
 
-    docker-push:
+    image_push:
       needs: docker
       runs-on: ubuntu-latest
       env:
