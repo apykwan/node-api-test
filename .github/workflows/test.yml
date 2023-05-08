@@ -55,7 +55,7 @@ jobs:
       uses: docker/login-action@v2
       with:
         username: apkwan
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
+        password: dckr_pat_bscliP5WYeq_39n1Xti3HnsCeME
     - name: build the Node API image
       run: docker build -t apkwan/node-mongo-test .
     - name: build the Docker image
