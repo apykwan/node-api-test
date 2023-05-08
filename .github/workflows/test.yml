@@ -46,17 +46,17 @@ jobs:
     needs: docker
     runs-on: ubuntu-latest
     env:
-      DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-      DOCKER_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
     steps:
     - name: Get code
       uses: actions/checkout@v3
     - name: Login to Docker Hub
       uses: docker/login-action@v2
       with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_TOKEN }}
     - name: build the Node API image
-      run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/node-mongo-test .
+      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/node-mongo-test .
     - name: build the Docker image
-      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/node-mongo-test
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/node-mongo-test
