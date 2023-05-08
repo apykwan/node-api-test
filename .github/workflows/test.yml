@@ -25,10 +25,10 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     env:
-    DB_LOCAL_URI: ${{ secrets.DB_LOCAL_URI }}
-    PORT: ${{ secrets.PORT }}
-    JWT_EXPIRES_TIME: ${{ secrets.JWT_EXPIRES_TIME }}
-    JWT_SECRET: ${{ secrets.JWTSECRET }}
+      DB_LOCAL_URI: ${{ secrets.DB_LOCAL_URI }}
+      PORT: ${{ secrets.PORT }}
+      JWT_EXPIRES_TIME: ${{ secrets.JWT_EXPIRES_TIME }}
+      JWT_SECRET: ${{ secrets.JWTSECRET }}
     steps:
       - name: Get code
         uses: actions/checkout@v3
