@@ -42,21 +42,21 @@ jobs:
           docker compose up -d 
           docker compose down
 
-    push:
-      needs: docker
-      runs-on: ubuntu-latest
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-        DOCKER_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-      steps:
-      - name: Get code
-        uses: actions/checkout@v3
-      - name: Login to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: build the Node API image
-        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/node-mongo-test .
-      - name: build the Docker imag
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/node-mongo-test
+  build-push:
+    needs: docker
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKER_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+    steps:
+    - name: Get code
+      uses: actions/checkout@v3
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: build the Node API image
+      run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/node-mongo-test .
+    - name: build the Docker imag
+      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/node-mongo-test
