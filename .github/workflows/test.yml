@@ -21,3 +21,21 @@ jobs:
         with:
           name: test-report
           path: test.json
+  
+  docker:
+    runs-on: ubuntu-latest
+    env:
+    DB_LOCAL_URI: ${{ secrets.DB_LOCAL_URI }}
+    PORT: ${{ secrets.PORT }}
+    JWT_EXPIRES_TIME: ${{ secrets.JWT_EXPIRES_TIME }}
+    JWT_SECRET: ${{ secrets.JWTSECRET }}
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Load & cache dependencies
+        uses: ./.github/actions/cached-deps
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      run: |
+        docker-compose up \
+        --abort-on-container-exit
