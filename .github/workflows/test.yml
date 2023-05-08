@@ -23,6 +23,7 @@ jobs:
           path: test.json
   
   docker:
+    needs: test
     runs-on: ubuntu-latest
     env:
       DB_LOCAL_URI: ${{ secrets.DB_LOCAL_URI }}
@@ -36,7 +37,6 @@ jobs:
         uses: ./.github/actions/cached-deps
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
-      - name: bBuild and run image
+      - name: Build and run image
         run: |
-          docker-compose up \
-          --abort-on-container-exit
+          docker compose up
