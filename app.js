@@ -10,6 +10,7 @@ dotenv.config({ path: "./config/config.env" });
 
 // Setup body parser
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Set cookie parser
 app.use(cookieParser());

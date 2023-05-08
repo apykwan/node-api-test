@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  # MongoDB services
+  mongo_db: 
+    container_name: db_jobs
+    image: mongo:latest
+    restart: always
+    ports: 
+      - 2717:27017
+    volumes: 
+      - mongo_db:/data/db
+
+  # Node API services
+  api: 
+    build: .
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    environment:
+      - PORT=${PORT}
+      - DB_LOCAL_URI=${DB_LOCAL_URI}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRES_TIME=${JWT_EXPIRES_TIME}
+    depends_on:
+      - mongo_db
+
+volumes:
+  mongo_db: {}

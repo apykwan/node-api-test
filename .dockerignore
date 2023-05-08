@@ -1,0 +1,7 @@
+./node_modules
+.github
+__tests__
+*.spec.js
+Dockerfile
+.dockerignore
+docker-compose.yml
